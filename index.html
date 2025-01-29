@@ -69,6 +69,9 @@
               <i class="fa-regular fa-heart"></i>
               <small>1</small>
             </div>
+            <div class="hamburger" onclick="toggleNavLinks()">
+              <i class="fa-solid fa-bars"></i>
+            </div>
           </div>
         </div>
       </nav>
@@ -84,6 +87,18 @@
         <a class="btn">SHOP NOW</a>
       </div>
     </section>
+
+    <button class="prev" onclick="moveSlide(-1)">
+      <img src="images/prev.png" alt="" />
+    </button>
+    <button class="next" onclick="moveSlide(1)">
+      <img src="images/next.png" alt="" />
+    </button>
+
+    <div class="sliderButtons">
+      <button class="sliderBtn" onclick="currentSlide(1)"></button>
+      <button class="sliderBtn" onclick="currentSlide(2)"></button>
+    </div>
 
     <section class="categories">
       <div class="categoriesContent">
@@ -249,8 +264,131 @@
         </div>
       </div>
       <div class="advertisingImage">
-        <img src="images/advertisement.png" />
+        <img id="adImage" src="images/advertisement.png" />
+      </div>
+
+      <button class="adPrev" onclick="moveSlide(-1)">
+        <img src="images/prev.png" alt="" />
+      </button>
+      <button class="adNext" onclick="moveSlide(1)">
+        <img src="images/next.png" alt="" />
+      </button>
+
+      <div class="adSliderButtons">
+        <button class="adSliderBtn" onclick="currentSlide(1)"></button>
+        <button class="adSliderBtn" onclick="currentSlide(2)"></button>
       </div>
     </section>
+
+    <section class="careSection">
+      <div class="careImg">
+        <img src="images/care.png" alt="" />
+      </div>
+      <div class="careContent">
+        <h3>SUMMER 2025</h3>
+        <h1>Part of the Neural Universe</h1>
+        <p>We know how large objects will act, but things on a small scale.</p>
+        <div class="careButtonContainer">
+          <a class="btn">BUY NOW</a>
+          <button class="readMore">READ MORE</button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function toggleNavLinks() {
+        const navLinks = document.querySelector(".navLinks");
+        navLinks.classList.toggle("show");
+      }
+
+      let currentIndex = 0;
+      const images = ["images/hero.jpeg", "images/heroreborn2.png"];
+      const advertiseImages = ["images/advertisement.png", "images/ad2.png"];
+      const textContent = [
+        {
+          h2: "WINTER 2025",
+          h1: "NEW COLLECTION",
+          tagline:
+            "We know how large objects will act, but things on a small scale.",
+        },
+        {
+          h2: "SPRING 2025",
+          h1: "NEW ARRIVALS",
+          tagline: "Fresh looks for a fresh season.",
+        },
+      ];
+
+      const adTextContent = [
+        {
+          h2: "WINTER 2025",
+          h1: "Vita Classic Product",
+          p: "We know how large objects will act, We know how our objects will act, We know",
+        },
+        {
+          h2: "SPRING 2025",
+          h1: "Zara Latest Collections",
+          p: "Embrace a new and classic look for your next party.",
+        },
+      ];
+      const sliderBtns = document.querySelectorAll(".sliderBtn");
+      const adSliderBtns = document.querySelectorAll(".adSliderBtn");
+
+      function moveSlide(direction) {
+        currentIndex += direction;
+
+        if (currentIndex < 0) {
+          currentIndex = images.length - 1;
+        } else if (currentIndex >= images.length) {
+          currentIndex = 0;
+        }
+
+        updateCarousel();
+        updateAdCarousel();
+      }
+
+      function updateCarousel() {
+        document.querySelector(
+          ".heroContainer"
+        ).style.backgroundImage = `url(${images[currentIndex]})`;
+
+        const currentText = textContent[currentIndex];
+        document.querySelector(".heroContent h2").textContent = currentText.h2;
+        document.querySelector(".heroContent h1").textContent = currentText.h1;
+        document.querySelector(".heroContent .tagline").textContent =
+          currentText.tagline;
+
+        sliderBtns.forEach((btn) => btn.classList.remove("active"));
+        sliderBtns[currentIndex].classList.add("active");
+        adSliderBtns.forEach((btn) => btn.classList.remove("active"));
+        adSliderBtns[currentIndex].classList.add("active");
+      }
+
+      function updateAdCarousel() {
+        document.getElementById(
+          "adImage"
+        ).src = `${advertiseImages[currentIndex]}`;
+
+        const currentText = adTextContent[currentIndex];
+        document.querySelector(".advertisingContent h2").textContent =
+          currentText.h2;
+        document.querySelector(".mainHeading h1").textContent = currentText.h1;
+        document.querySelector(".mainPara p").textContent = currentText.p;
+
+        sliderBtns.forEach((btn) => btn.classList.remove("active"));
+        sliderBtns[currentIndex].classList.add("active");
+      }
+
+      function currentSlide(index) {
+        currentIndex = index - 1;
+        updateCarousel();
+        updateAdCarousel();
+      }
+
+      setInterval(() => {
+        moveSlide(1);
+      }, 5000);
+      updateCarousel();
+      updateAdCarousel();
+    </script>
   </body>
 </html>
