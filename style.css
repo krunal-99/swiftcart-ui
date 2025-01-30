@@ -43,6 +43,17 @@
   font-size: 16px;
 }
 
+.phoneNumber:hover,
+.emailAddress:hover,
+.socials i:hover,
+.socialsContainer i:hover {
+  color: orange;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 .navbarContainer {
   display: flex;
   align-items: center;
@@ -80,6 +91,12 @@
 .navLinks li {
   list-style: none;
   padding: 0 15px;
+  color: #333;
+}
+
+.navLinks li a:hover {
+  color: #007bff;
+  transform: scale(1.1);
 }
 
 .navLinks li a {
@@ -89,6 +106,9 @@
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.2px;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .functionalities {
@@ -97,6 +117,12 @@
   text-align: center;
   color: #23a6f0;
   gap: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.functionalities div:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 5px;
 }
 
 .functionalities i {
@@ -174,6 +200,13 @@
   padding: 15px 40px;
   font-size: 20px;
   font-weight: 700;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.heroContent .btn:hover,
+.careButtonContainer .btn:hover {
+  background-color: #28a063;
 }
 
 .prev,
@@ -964,6 +997,13 @@
   .footerLinks {
     grid-template-columns: repeat(3, 1fr);
   }
+  .secondItem img {
+    width: 500px;
+    height: auto;
+  }
+  .thirdItem img {
+    width: 500px;
+  }
 }
 @media (max-width: 1000px) {
   .heroContent {
@@ -1099,9 +1139,13 @@
   .next {
     right: 10px;
   }
-  .firstItem img {
+  .firstItem img,
+  .secondItem img {
     width: auto;
     height: auto;
+  }
+  .thirdItem img {
+    width: 360px;
   }
   .footerLinks {
     grid-template-columns: 1fr;
@@ -1138,6 +1182,11 @@
   }
   .featuredContent h3 {
     width: 90%;
+  }
+  .companyLine {
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
   }
 }
 
@@ -1224,8 +1273,15 @@
   .next {
     right: 5px;
   }
-  .imagesContainer .firstItem img {
+  .imagesContainer .firstItem img,
+  .imagesContainer .secondItem img {
     width: 90%;
+  }
+  .thirdItem {
+    padding: 0 10px;
+  }
+  .thirdItem img {
+    width: 300px;
   }
   .postImage {
     width: 100%;
@@ -1241,5 +1297,8 @@
   }
   .functionalities {
     gap: 10px;
+  }
+  .thirdItem img {
+    width: 200px;
   }
 }
