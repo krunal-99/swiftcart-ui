@@ -1077,11 +1077,13 @@
     font-size: 16px;
     line-height: 20px;
   }
-  .prev {
-    left: 5px;
-  }
+  .prev,
   .next {
-    right: 5px;
+    padding: 5px;
+  }
+  .prev img,
+  .next img {
+    width: 20px;
   }
   .imagesContainer {
     margin: 0;
