@@ -26,7 +26,7 @@
             <span>michelle.rivera@example.com</span>
           </div>
         </div>
-        <div class="advertisementContent">
+        <div class="advertisementContent pointer">
           <p>Follow Us and get a chance to win 80% off</p>
         </div>
         <div class="followUs">
@@ -39,7 +39,6 @@
           </div>
         </div>
       </div>
-
       <nav class="navbarContainer">
         <div class="navbarLogo pointer">
           <p>Swiftcart</p>
@@ -76,7 +75,6 @@
         </div>
       </nav>
     </header>
-
     <section class="heroContainer">
       <div class="heroContent">
         <h2>WINTER 2025</h2>
@@ -87,19 +85,16 @@
         <a class="btn pointer">SHOP NOW</a>
       </div>
     </section>
-
     <button class="prev" onclick="moveSlide(-1)">
       <img src="images/prev.png" alt="" />
     </button>
     <button class="next" onclick="moveSlide(1)">
       <img src="images/next.png" alt="" />
     </button>
-
     <div class="sliderButtons">
       <button class="sliderBtn" onclick="currentSlide(1)"></button>
       <button class="sliderBtn" onclick="currentSlide(2)"></button>
     </div>
-
     <section class="categories">
       <div class="categoriesContent">
         <h1>EDITOR'S PICK</h1>
@@ -123,7 +118,6 @@
         </div>
       </div>
     </section>
-
     <section class="featuredProducts">
       <div class="featuredHeading">
         <h3>Featured Products</h3>
@@ -245,7 +239,6 @@
         </div>
       </div>
     </section>
-
     <section class="mainAdvertisement">
       <div class="advertisingContent">
         <h2>WINTER 2025</h2>
@@ -266,20 +259,17 @@
       <div class="advertisingImage">
         <img id="adImage" src="images/ad1.png" />
       </div>
-
       <button class="adPrev" onclick="moveSlide(-1)">
         <img src="images/prev.png" alt="" />
       </button>
       <button class="adNext" onclick="moveSlide(1)">
         <img src="images/next.png" alt="" />
       </button>
-
       <div class="adSliderButtons">
         <button class="adSliderBtn" onclick="currentSlide(1)"></button>
         <button class="adSliderBtn" onclick="currentSlide(2)"></button>
       </div>
     </section>
-
     <section class="careSection">
       <div class="careImg">
         <img src="images/care.png" alt="" />
@@ -294,7 +284,6 @@
         </div>
       </div>
     </section>
-
     <section class="featuredPosts">
       <div class="featuredContent">
         <p>Practice Advice</p>
@@ -403,7 +392,6 @@
         </div>
       </div>
     </section>
-
     <footer class="footerContainer">
       <div class="companyLine">
         <div class="brandName pointer">
@@ -467,13 +455,24 @@
         <p>Made With Love By Krunal Pokar All Right Reserved</p>
       </div>
     </footer>
-
     <script>
       function toggleNavLinks() {
         const navLinks = document.querySelector(".navLinks");
-        navLinks.classList.toggle("show");
+        navLinks.classList.toggle("active");
+        const heroContainer = document.querySelector(".heroContainer");
+        const previousButton = document.querySelector(".prev");
+        const nextButton = document.querySelector(".next");
+        if (navLinks.classList.contains("active")) {
+          const navHeight = navLinks.offsetHeight;
+          heroContainer.style.marginTop = navHeight + "px";
+          previousButton.style.marginTop = navHeight + "px";
+          nextButton.style.marginTop = navHeight + "px";
+        } else {
+          heroContainer.style.marginTop = "0";
+          previousButton.style.marginTop = "0";
+          nextButton.style.marginTop = "0";
+        }
       }
-
       let currentIndex = 0;
       const images = ["images/hero.jpeg", "images/heroreborn2.png"];
       const advertiseImages = ["images/ad1.png", "images/ad2.png"];
@@ -490,7 +489,6 @@
           tagline: "Fresh looks for a fresh season.",
         },
       ];
-
       const adTextContent = [
         {
           h2: "WINTER 2025",
@@ -505,58 +503,47 @@
       ];
       const sliderBtns = document.querySelectorAll(".sliderBtn");
       const adSliderBtns = document.querySelectorAll(".adSliderBtn");
-
       function moveSlide(direction) {
         currentIndex += direction;
-
         if (currentIndex < 0) {
           currentIndex = images.length - 1;
         } else if (currentIndex >= images.length) {
           currentIndex = 0;
         }
-
         updateCarousel();
         updateAdCarousel();
       }
-
       function updateCarousel() {
         document.querySelector(
           ".heroContainer"
         ).style.backgroundImage = `url(${images[currentIndex]})`;
-
         const currentText = textContent[currentIndex];
         document.querySelector(".heroContent h2").textContent = currentText.h2;
         document.querySelector(".heroContent h1").textContent = currentText.h1;
         document.querySelector(".heroContent .tagline").textContent =
           currentText.tagline;
-
         sliderBtns.forEach((btn) => btn.classList.remove("active"));
         sliderBtns[currentIndex].classList.add("active");
         adSliderBtns.forEach((btn) => btn.classList.remove("active"));
         adSliderBtns[currentIndex].classList.add("active");
       }
-
       function updateAdCarousel() {
         document.getElementById(
           "adImage"
         ).src = `${advertiseImages[currentIndex]}`;
-
         const currentText = adTextContent[currentIndex];
         document.querySelector(".advertisingContent h2").textContent =
           currentText.h2;
         document.querySelector(".mainHeading h1").textContent = currentText.h1;
         document.querySelector(".mainPara p").textContent = currentText.p;
-
         sliderBtns.forEach((btn) => btn.classList.remove("active"));
         sliderBtns[currentIndex].classList.add("active");
       }
-
       function currentSlide(index) {
         currentIndex = index - 1;
         updateCarousel();
         updateAdCarousel();
       }
-
       setInterval(() => {
         moveSlide(1);
       }, 5000);
