@@ -225,7 +225,7 @@
   background-color: #2dc071;
 }
 .categories {
-  padding: 80px 0;
+  padding-top: 80px;
   background: #fafafa;
 }
 .categoriesContent {
@@ -569,6 +569,7 @@
   width: 90%;
   margin: 0 auto;
 }
+
 .postImage img {
   width: 350px;
   height: 300px;
@@ -732,6 +733,7 @@
 .contactForm input {
   padding: 10px;
   background-color: #f9f9f9;
+  outline: 0;
 }
 .contactForm input::placeholder {
   font-size: 14px;
@@ -1058,14 +1060,16 @@
 @media (max-width: 450px) {
   .navbar {
     align-items: flex-end;
-    padding-right: 15px;
+    margin-right: 15px;
   }
   .navbarLogo {
-    padding: 0 0 0 10px;
+    padding: 0 0 0 5px;
+  }
+  .navbarLogo p {
+    padding: 0;
   }
   .functionalities {
     align-items: flex-end;
-    padding: 0;
     gap: 15px;
   }
   .heroContent h1 {
@@ -1102,6 +1106,10 @@
   }
   .postImage {
     width: 100%;
+    height: 100%;
+  }
+  .postImage img {
+    object-fit: cover;
   }
   .featuredContent h1 {
     font-size: 30px;
